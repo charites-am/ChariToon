@@ -147,12 +147,12 @@ class ComicPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          // Top bar with back arrow and title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Row(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: ListView(
+          children: [
+            // Top bar with back arrow and title
+            Row(
               children: [
                 IconButton(
                   icon: const FaIcon(FontAwesomeIcons.chevronLeft, size: 20),
@@ -184,11 +184,9 @@ class ComicPageContent extends StatelessWidget {
                 const SizedBox(width: 48), // to balance the back button width
               ],
             ),
-          ),
-          // Search and filter
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
+            const SizedBox(height: 12),
+            // Search and filter
+            Row(
               children: [
                 Expanded(
                   child: Container(
@@ -234,97 +232,100 @@ class ComicPageContent extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 16),
-          // Comics grid
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: GridView.builder(
-                itemCount: comics.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 0.55,
+            const SizedBox(height: 16),
+            // Comics grid
+           GridView.builder(
+  shrinkWrap: true,
+  physics: const NeverScrollableScrollPhysics(),
+  itemCount: comics.length,
+  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 3,
+    mainAxisSpacing: 16,
+    crossAxisSpacing: 12,
+    childAspectRatio: 0.6, // naikkan dari 0.55 ke 0.6
+  ),
+  itemBuilder: (context, index) {
+    final comic = comics[index];
+    return SizedBox(
+  width: 90,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min, // pastikan Column tidak mengambil ruang vertikal tak terbatas
+    children: [
+      ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.network(
+          comic['image']!,
+          height: 120,
+          width: 90,
+          fit: BoxFit.cover,
+          semanticLabel: comic['alt']!,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              width: 90,
+              height: 120,
+              color: Colors.grey[300],
+              child: Center(
+                child: Text(
+                  comic['title']!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 12, color: Colors.black54),
                 ),
-                itemBuilder: (context, index) {
-                  final comic = comics[index];
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          comic['image'],
-                          width: double.infinity,
-                          height: 140,
-                          fit: BoxFit.cover,
-                          semanticLabel: comic['alt'],
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              width: double.infinity,
-                              height: 140,
-                              color: Colors.grey[300],
-                              child: Center(
-                                child: Text(
-                                  comic['title'],
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 12, color: Colors.black54),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        comic['chapter'],
-                        style: const TextStyle(
-                          fontSize: 10,
-                          color: Color(0xFF9E9E9E),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        comic['title'],
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 2),
-                      Row(
-                        children: [
-                          const FaIcon(
-                            FontAwesomeIcons.eye,
-                            size: 12,
-                            color: Color(0xFFF9A825),
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            comic['views'],
-                            style: const TextStyle(
-                              fontSize: 11,
-                              color: Color(0xFFF9A825),
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                },
               ),
+            );
+          },
+        ),
+      ),
+      const SizedBox(height: 4),
+      Text(
+        comic['chapter']!,
+        style: const TextStyle(
+          fontSize: 9,
+          color: Colors.grey,
+        ),
+      ),
+      const SizedBox(height: 2),
+      Flexible(
+        child: Text(
+          comic['title']!,
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      const SizedBox(height: 2),
+      Row(
+        children: [
+          const FaIcon(
+            FontAwesomeIcons.eye,
+            size: 12,
+            color: Color(0xFFF9A825),
+          ),
+          const SizedBox(width: 4),
+          Expanded(
+            child: Text(
+              comic['views']!,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Color(0xFFF9A825),
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          // Pagination
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Row(
+        ],
+      ),
+    ],
+  ),
+);
+  },
+),
+            const SizedBox(height: 12),
+            // Pagination
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
@@ -351,8 +352,8 @@ class ComicPageContent extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
