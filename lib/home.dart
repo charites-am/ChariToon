@@ -1,6 +1,7 @@
 
 // ignore_for_file: deprecated_member_use
 
+import 'package:charitoon/comic.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Comic App',
+      title: 'ChariToon',
       theme: ThemeData(
         fontFamily: 'Poppins',
         primaryColor: const Color(0xFFF9A825),
@@ -38,9 +39,9 @@ class _ComicHomePageState extends State<ComicHomePage> {
 
   final List<Widget> _pages = [
     const ComicHomePageContent(),
+    const ComicPageContent(),
     const Center(child: Text('Categories')),
-    const Center(child: Text('Library')),
-    const Center(child: Text('Bookmarks')),
+    const Center(child: Text('Histories')),
     const Center(child: Text('Profile')),
   ];
 
@@ -85,9 +86,9 @@ class _ComicHomePageState extends State<ComicHomePage> {
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
           items: [
             _buildNavItem(FontAwesomeIcons.home, 'Home', color: _selectedIndex == 0 ? const Color(0xFFF9A825) : Colors.grey[600]),
-            _buildNavItem(FontAwesomeIcons.book, 'Categories', color: _selectedIndex == 1 ? const Color(0xFFF9A825) : Colors.grey[600]),
-            _buildNavItem(FontAwesomeIcons.boxArchive, 'Library', color: _selectedIndex == 2 ? const Color(0xFFF9A825) : Colors.grey[600]),
-            _buildNavItem(FontAwesomeIcons.bookBookmark, 'Bookmarks', color: _selectedIndex == 3 ? const Color(0xFFF9A825) : Colors.grey[600]),
+            _buildNavItem(FontAwesomeIcons.book, 'Comic List', color: _selectedIndex == 1 ? const Color(0xFFF9A825) : Colors.grey[600]),
+            _buildNavItem(FontAwesomeIcons.boxArchive, 'Categories', color: _selectedIndex == 2 ? const Color(0xFFF9A825) : Colors.grey[600]),
+            _buildNavItem(FontAwesomeIcons.bookBookmark, 'Histories', color: _selectedIndex == 3 ? const Color(0xFFF9A825) : Colors.grey[600]),
             _buildNavItem(FontAwesomeIcons.solidUser, 'Profile', color: _selectedIndex == 4 ? const Color(0xFFF9A825) : Colors.grey[600]),
           ],
         ),
