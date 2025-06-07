@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:charitoon/genre.dart';
 import 'package:charitoon/home.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,7 +40,7 @@ class _ComicPageState extends State<ComicPage> {
   final List<Widget> _pages = [
     const ComicHomePageContent(),
     const ComicPageContent(),
-    const Center(child: Text('Genrelist')),
+    const GenrePageContent(),
     const Center(child: Text('Histories')),
     const Center(child: Text('Profile')),
   ];

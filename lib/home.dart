@@ -2,6 +2,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:charitoon/comic.dart';
+import 'package:charitoon/genre.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -40,7 +41,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
   final List<Widget> _pages = [
     const ComicHomePageContent(),
     const ComicPageContent(),
-    const Center(child: Text('Categories')),
+    const GenrePageContent(),
     const Center(child: Text('Histories')),
     const Center(child: Text('Profile')),
   ];
@@ -110,20 +111,17 @@ class _ComicHomePageContentState extends State<ComicHomePageContent> {
 
   final List<Map<String, String>> banners = [
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/754b83bd-f1b8-4d35-35a7-e0ae1ca0cd56.jpg',
-      'alt': 'Banner with character holding a crown on golden background and text The Begin After The End',
-      'title': 'The Begin\nAfter The\nEnd',
+      'image': 'https://placehold.co/100x140/png?text=Solo+Leveling',
+      'alt': 'Cover Solo Leveling',
+      'title': 'Solo Leveling',
     },
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/f19e039b-6ae7-45c9-109d-36f39c4fe2d4.jpg',
+      'image': 'https://placehold.co/100x140/png?text=The+Begin+After+The+End',
       'alt': 'Banner with characters fighting and text The Begin After The End',
       'title': 'The Begin\nAfter The\nEnd',
     },
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/b204353b-42d4-47e5-da40-073df829b33c.jpg',
+      'image': 'https://placehold.co/100x140/png?text=The+Genius+Who+Sees+The+End',
       'alt': 'Banner with man reading a book and text The Genius Who Sees The End',
       'title': 'The Genius\nWho Sees\nThe End',
     },
@@ -131,56 +129,56 @@ class _ComicHomePageContentState extends State<ComicHomePageContent> {
 
   final genreData = [
     {
+      'color': Color(0xFFF59E0B),
+      'icon': FontAwesomeIcons.fire,
       'label': 'Action',
-      'color': const Color(0xFFF9A825),
+      'iconDescription': 'Orange circle with a white target icon representing Action genre',
+    },
+    {
+      'color': Color(0xFF8B00FF),
       'icon': FontAwesomeIcons.bullseye,
-    },
-    {
       'label': 'Mystery',
-      'color': const Color(0xFF8E24AA),
-      'icon': FontAwesomeIcons.play,
+      'iconDescription': 'Purple circle with a white triangle icon representing Mystery genre',
     },
     {
-      'label': 'Horror',
-      'color': const Color(0xFFD32F2F),
+      'color': Color(0xFFEF4444),
       'icon': FontAwesomeIcons.locationArrow,
+      'label': 'Horror',
+      'iconDescription': 'Red circle with a white arrow icon representing Horror genre',
     },
     {
-      'label': 'Romance',
-      'color': const Color(0xFFFF00FF),
+      'color': Color(0xFFEC4899),
       'icon': FontAwesomeIcons.heart,
+      'label': 'Romance',
+      'iconDescription': 'Pink circle with a white heart icon representing Romance genre',
     },
   ];
 
   final comics = [
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/343d43a5-1b9c-4691-3248-d68469fa6a9a.jpg',
+      'image': 'https://placehold.co/100x140/png?text=Solo+Leveling',
       'alt': 'Solo Leveling comic cover with dark characters',
       'chapter': 'S2 END',
       'title': 'Solo Leveling',
       'views': '233.2M',
     },
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/f19e039b-6ae7-45c9-109d-36f39c4fe2d4.jpg',
+      'image': 'https://placehold.co/100x140/png?text=The+Begin+After+The+End',
       'alt': 'The Begin After The End comic cover with characters fighting',
       'chapter': 'Chapter 100',
       'title': 'The Begin After The End',
       'views': '200M',
     },
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/b204353b-42d4-47e5-da40-073df829b33c.jpg',
+      'image': 'https://placehold.co/100x140/png?text=The+Genius+Who+Sees+The+End',
       'alt': 'The Genius Who Sees The End comic cover with man reading a book',
       'chapter': 'Chapter 28',
       'title': 'The Genius Who Sees Th...',
       'views': '139.2M',
     },
     {
-      'image':
-          'https://storage.googleapis.com/a1aa/image/f081ab9d-fd62-479e-54a5-9be889aef013.jpg',
-      'alt': 'My Status on the Super God System comic cover with characters',
+      'image': 'https://placehold.co/100x140/png?text=My+Status+on+The+Super+God+System',
+      'alt': 'My Status on The Super God System comic cover with characters',
       'chapter': 'Chapter 12',
       'title': 'My Status on the Super God System',
       'views': '16.7M',
