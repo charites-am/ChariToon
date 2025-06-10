@@ -2,6 +2,7 @@
 
 import 'package:charitoon/comic.dart';
 import 'package:charitoon/home.dart';
+import 'package:charitoon/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -42,7 +43,7 @@ class _GenrePageState extends State<GenrePage> {
     const ComicPageContent(),
     const GenrePageContent(),
     const Center(child: Text('Histories')),
-    const Center(child: Text('Profile')),
+    const ProfilePageContent(),
   ];
 
   void _onItemTapped(int index) {

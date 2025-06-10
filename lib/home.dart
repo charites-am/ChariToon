@@ -3,6 +3,7 @@
 
 import 'package:charitoon/comic.dart';
 import 'package:charitoon/genre.dart';
+import 'package:charitoon/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -43,7 +44,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
     const ComicPageContent(),
     const GenrePageContent(),
     const Center(child: Text('Histories')),
-    const Center(child: Text('Profile')),
+    const ProfilePageContent(),
   ];
 
   void _onItemTapped(int index) {
@@ -443,7 +444,8 @@ class _ComicHomePageContentState extends State<ComicHomePageContent> {
                       TextSpan(
                         text: 'List',
                         style: TextStyle(
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
                         ),
                       ),
                     ],
